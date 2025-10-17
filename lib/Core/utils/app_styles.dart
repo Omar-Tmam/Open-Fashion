@@ -6,7 +6,7 @@ abstract class AppStyles {
     return TextStyle(
       color: Theme.of(context).textTheme.titleLarge?.color,
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context, fontSize: 18),
+      fontSize: getResponsiveFontSize(context, fontSize: 20),
       fontFamily: 'TenorSans',
       letterSpacing: 4.0,
     );
@@ -16,7 +16,7 @@ abstract class AppStyles {
     return TextStyle(
       color: Theme.of(context).textTheme.titleMedium?.color,
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context, fontSize: 16),
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
       fontFamily: 'TenorSans',
       letterSpacing: 2.0,
     );
@@ -26,7 +26,7 @@ abstract class AppStyles {
     return TextStyle(
       color: Theme.of(context).textTheme.titleSmall?.color,
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
       fontFamily: 'TenorSans',
       letterSpacing: 2.0,
     );
@@ -36,7 +36,7 @@ abstract class AppStyles {
     return TextStyle(
       color: Theme.of(context).textTheme.bodyLarge?.color,
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
       fontFamily: 'TenorSans',
     );
   }
@@ -45,7 +45,7 @@ abstract class AppStyles {
     return TextStyle(
       color: Theme.of(context).textTheme.bodyMedium?.color,
       fontWeight: FontWeight.w400,
-      fontSize: getResponsiveFontSize(context, fontSize: 14),
+      fontSize: getResponsiveFontSize(context, fontSize: 16),
       fontFamily: 'TenorSans',
     );
   }
