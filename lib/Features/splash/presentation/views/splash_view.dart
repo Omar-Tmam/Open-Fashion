@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:open_fashion/Core/assets.dart';
+import 'package:open_fashion/Core/utils/app_router.dart';
 import 'package:open_fashion/Features/splash/presentation/views/widgets/animation.dart';
 
 class SplashView extends StatefulWidget {
@@ -13,9 +15,9 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    // Future.delayed(Duration(milliseconds: 1000), () {
-    //   context.pushReplacement(AppRouter.kHomeView);
-    // });
+    Future.delayed(Duration(milliseconds: 2500), () {
+      context.pushReplacement(AppRouter.kHomeView);
+    });
     super.initState();
   }
 
