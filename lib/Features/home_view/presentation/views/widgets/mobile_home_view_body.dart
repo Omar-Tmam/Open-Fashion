@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
+import 'package:open_fashion/Core/utils/app_styles.dart';
 import 'package:open_fashion/Features/home_view/presentation/views/widgets/product_builder.dart';
 
 class MobileHomeViewBody extends StatelessWidget {
@@ -20,7 +21,22 @@ class MobileHomeViewBody extends StatelessWidget {
             top: 140,
 
             child: SingleChildScrollView(
-              child: Column(children: [Image.asset(Assets.imgsMainImg), Gap(20), ProductBuilder()]),
+              child: Column(
+                children: [
+                  Image.asset(Assets.imgsMainImg),
+                  Gap(20),
+                  ProductBuilder(),
+
+                  Gap(50),
+                  Text(
+                    'You may also like'.toUpperCase(),
+                    style: AppStyles.bodyLarge(context).copyWith(fontSize: 26),
+                  ),
+                  Gap(20),
+                  SvgPicture.asset(Assets.imgs12, width: 200),
+                  Gap(300),
+                ],
+              ),
             ),
           ),
         ],
