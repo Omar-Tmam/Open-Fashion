@@ -47,7 +47,7 @@ class ProductItem extends StatelessWidget {
         ),
         Gap(10),
         Text(
-          productModel.price,
+          productModel.price.toString(),
           style: AppStyles.bodyLarge(context).copyWith(color: Colors.orange),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,

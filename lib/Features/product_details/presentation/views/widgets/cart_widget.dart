@@ -6,8 +6,9 @@ import 'package:open_fashion/Core/utils/app_styles.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
 
 class CartWidget extends StatelessWidget {
-  const CartWidget({super.key, required this.productModel});
+  const CartWidget({super.key, required this.productModel, required this.itemContNotifer});
   final ProductModel productModel;
+  final ValueNotifier<int> itemContNotifer;
 
   @override
   Widget build(BuildContext context) {
@@ -36,22 +37,48 @@ class CartWidget extends StatelessWidget {
               Gap(12),
               Row(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                    child: SvgPicture.asset(Assets.imgsNeg, width: 24, height: 26),
+                  ValueListenableBuilder(
+                    valueListenable: itemContNotifer,
+                    builder: (context, value, child) {
+                      return InkWell(
+                        onTap: () {
+                          itemContNotifer.value > 1 ? itemContNotifer.value-- : null;
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                          child: SvgPicture.asset(Assets.imgsNeg, width: 24, height: 26),
+                        ),
+                      );
+                    },
                   ),
                   Gap(18),
-                  Text('1', style: AppStyles.subTitle16(context).copyWith(fontSize: 20)),
+                  ValueListenableBuilder(
+                    valueListenable: itemContNotifer,
+                    builder: (context, value, child) {
+                      return Text(
+                        value.toString(),
+                        style: AppStyles.subTitle16(context).copyWith(fontSize: 20),
+                      );
+                    },
+                  ),
                   Gap(18),
-                  Container(
-                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                    child: SvgPicture.asset(Assets.imgsPlus, width: 24, height: 26),
+                  ValueListenableBuilder(
+                    valueListenable: itemContNotifer,
+                    builder: (context, value, child) {
+                      return InkWell(
+                        onTap: () => itemContNotifer.value++,
+                        child: Container(
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                          child: SvgPicture.asset(Assets.imgsPlus, width: 24, height: 26),
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
               Gap(12),
               Text(
-                productModel.price,
+                productModel.price.toString(),
                 style: AppStyles.subTitle16(context).copyWith(color: Colors.orange),
               ),
             ],

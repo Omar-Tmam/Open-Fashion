@@ -9,12 +9,18 @@ import 'package:open_fashion/Features/product_details/presentation/views/widgets
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/delivery_section.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
 
-class ProductDetailsViewBody extends StatelessWidget {
+class ProductDetailsViewBody extends StatefulWidget {
   const ProductDetailsViewBody({super.key, required this.productModel});
   final ProductModel productModel;
 
   @override
+  State<ProductDetailsViewBody> createState() => _ProductDetailsViewBodyState();
+}
+
+class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
+  @override
   Widget build(BuildContext context) {
+    final ValueNotifier<int> itemCountNotifier = ValueNotifier(1);
     return Center(
       child: Column(
         children: [
@@ -25,11 +31,11 @@ class ProductDetailsViewBody extends StatelessWidget {
             colorFilter: ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn),
           ),
           Gap(20),
-          CartWidget(productModel: productModel),
+          CartWidget(productModel: widget.productModel,itemContNotifer: itemCountNotifier,),
           Gap(20),
           DeliverySection(),
           Spacer(),
-          TotalPriceSection(),
+          TotalPriceSection(productModel: widget.productModel, itemContNotifier: itemCountNotifier),
           Gap(22),
           CustomButton(
             widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
