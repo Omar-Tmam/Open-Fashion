@@ -16,7 +16,7 @@ class ProductItem extends StatelessWidget {
       children: [
         Stack(
           children: [
-            Image.asset(productModel.image),
+            GestureDetector(child: Image.asset(productModel.image)),
             Positioned(
               right: 10,
               bottom: 10,

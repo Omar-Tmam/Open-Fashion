@@ -24,7 +24,7 @@ class ContactSection extends StatelessWidget {
         ),
         Gap(14),
         Text(
-          'support@openui.design\n+60 825 876\n08:00 - 22:00 - Everyday',
+          'omartmam9@gmail.com\n+20 120 221 0428\n08:00 - 22:00 - Everyday',
           textAlign: TextAlign.center,
           style: AppStyles.bodyMedium(context).copyWith(height: 2),
         ),
@@ -44,4 +44,3 @@ class ContactSection extends StatelessWidget {
     );
   }
 }
-
