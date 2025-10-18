@@ -37,19 +37,14 @@ class CartWidget extends StatelessWidget {
               Gap(12),
               Row(
                 children: [
-                  ValueListenableBuilder(
-                    valueListenable: itemContNotifer,
-                    builder: (context, value, child) {
-                      return InkWell(
-                        onTap: () {
-                          itemContNotifer.value > 1 ? itemContNotifer.value-- : null;
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                          child: SvgPicture.asset(Assets.imgsNeg, width: 24, height: 26),
-                        ),
-                      );
+                  InkWell(
+                    onTap: () {
+                      itemContNotifer.value > 1 ? itemContNotifer.value-- : null;
                     },
+                    child: Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                      child: SvgPicture.asset(Assets.imgsNeg, width: 24, height: 26),
+                    ),
                   ),
                   Gap(18),
                   ValueListenableBuilder(
@@ -62,17 +57,12 @@ class CartWidget extends StatelessWidget {
                     },
                   ),
                   Gap(18),
-                  ValueListenableBuilder(
-                    valueListenable: itemContNotifer,
-                    builder: (context, value, child) {
-                      return InkWell(
-                        onTap: () => itemContNotifer.value++,
-                        child: Container(
-                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                          child: SvgPicture.asset(Assets.imgsPlus, width: 24, height: 26),
-                        ),
-                      );
-                    },
+                  InkWell(
+                    onTap: () => itemContNotifer.value++,
+                    child: Container(
+                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                      child: SvgPicture.asset(Assets.imgsPlus, width: 24, height: 26),
+                    ),
                   ),
                 ],
               ),
