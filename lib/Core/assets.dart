@@ -142,6 +142,10 @@ class Assets {
   /// assets/imgs/Menu.svg
   static const String imgsMenu = "assets/imgs/Menu.svg";
 
+  /// Assets for imgsNeg
+  /// assets/imgs/neg.svg
+  static const String imgsNeg = "assets/imgs/neg.svg";
+
   /// Assets for imgsOctober
   /// assets/imgs/October.svg
   static const String imgsOctober = "assets/imgs/October.svg";

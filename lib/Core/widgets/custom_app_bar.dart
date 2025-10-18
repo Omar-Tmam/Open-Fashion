@@ -15,6 +15,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     final iconColor = isDark ? Colors.white : Colors.black;
 
     return AppBar(
+      leading: SizedBox.shrink(),
+      leadingWidth: 0,
       backgroundColor: isDark ? Color(0xFF111111) : Colors.white,
       elevation: 0,
       centerTitle: true,

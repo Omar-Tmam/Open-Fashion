@@ -20,7 +20,7 @@ class ProductModel {
       image: Assets.imgsEarRing,
       price: '600\$',
       description: 'Luxury gold-plated earrings with a modern minimalist design.',
-      name: 'Golden Earrings',
+      name: 'Earrings',
     ),
     ProductModel(
       image: Assets.imgsBoots,
