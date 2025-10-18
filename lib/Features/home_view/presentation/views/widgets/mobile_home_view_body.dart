@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
+import 'package:open_fashion/Features/home_view/presentation/views/widgets/cover_builder.dart';
 import 'package:open_fashion/Features/home_view/presentation/views/widgets/product_builder.dart';
 
 class MobileHomeViewBody extends StatelessWidget {
@@ -34,7 +35,9 @@ class MobileHomeViewBody extends StatelessWidget {
                   ),
                   Gap(20),
                   SvgPicture.asset(Assets.imgs12, width: 200),
-                  Gap(300),
+                  Gap(50),
+                  CoverBuilder(),
+                  Gap(50),
                 ],
               ),
             ),
