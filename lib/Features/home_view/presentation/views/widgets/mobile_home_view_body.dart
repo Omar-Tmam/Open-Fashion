@@ -3,9 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
+import 'package:open_fashion/Features/home_view/presentation/views/widgets/contact_section.dart';
 import 'package:open_fashion/Features/home_view/presentation/views/widgets/cover_builder.dart';
 import 'package:open_fashion/Features/home_view/presentation/views/widgets/product_builder.dart';
-import 'package:open_fashion/Features/home_view/presentation/views/widgets/social_media_section.dart';
 
 class MobileHomeViewBody extends StatelessWidget {
   const MobileHomeViewBody({super.key});
@@ -45,9 +45,8 @@ class MobileHomeViewBody extends StatelessWidget {
                   ),
                   Gap(50),
                   CoverBuilder(),
-                  Gap(90),
+                  Gap(70),
                   ContactSection(),
-                  Gap(80),
                 ],
               ),
             ),
@@ -57,24 +56,3 @@ class MobileHomeViewBody extends StatelessWidget {
     );
   }
 }
-
-class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SocialMediaSection(),
-        Gap(30),
-        SvgPicture.asset(
-          Assets.imgs12,
-          width: 140,
-          colorFilter: ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-        ),
-        Column(children: [Text('')]),
-      ],
-    );
-  }
-}
-
