@@ -3,9 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
+import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/cart_widget.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/delivery_section.dart';
+import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
 
 class ProductDetailsViewBody extends StatelessWidget {
   const ProductDetailsViewBody({super.key, required this.productModel});
@@ -26,11 +28,16 @@ class ProductDetailsViewBody extends StatelessWidget {
           CartWidget(productModel: productModel),
           Gap(20),
           DeliverySection(),
+          Spacer(),
+          TotalPriceSection(),
+          Gap(22),
+          CustomButton(
+            widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
+            text: 'checkout',
+          ),
+          Gap(20),
         ],
       ),
     );
   }
 }
-
-
-
