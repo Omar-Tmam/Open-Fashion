@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
-import 'package:open_fashion/Core/utils/app_styles.dart';
 import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
@@ -47,4 +46,3 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
     );
   }
 }
-
