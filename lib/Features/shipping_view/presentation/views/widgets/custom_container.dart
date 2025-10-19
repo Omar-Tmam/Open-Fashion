@@ -28,6 +28,13 @@ class CustomContainer extends StatelessWidget {
             ).copyWith(color: Color(0xFF555555), fontWeight: FontWeight.w700),
           ),
           Spacer(),
+          Text(
+            suffText ?? '',
+            style: AppStyles.subTitle14(
+              context,
+            ).copyWith(color: Color(0xFF555555), fontWeight: FontWeight.w700),
+          ),
+          Gap(5),
           SvgPicture.asset(icon, color: Colors.black, width: 22),
           Gap(20),
         ],

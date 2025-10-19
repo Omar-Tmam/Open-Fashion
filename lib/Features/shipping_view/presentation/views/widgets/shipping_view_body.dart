@@ -1,27 +1,60 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
+import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
+import 'package:open_fashion/Features/product_details/data/models/order_model.dart';
+import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
 import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/custom_container.dart';
 
 class ShippingViewBody extends StatelessWidget {
-  const ShippingViewBody({super.key});
+  const ShippingViewBody({super.key, required this.orderModel});
+  final OrderModel orderModel;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        children: [
-          Gap(34),
-          HeaderWidget(title: 'checkout'),
-          Gap(20),
-          CustomContainer(title: 'Add shipping address', icon: Assets.imgsPlus),
-        ],
-      ),
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                Gap(34),
+                HeaderWidget(title: 'Shipping'),
+                Gap(20),
+                CustomContainer(title: 'Add shipping address', icon: Assets.imgsPlus),
+                Gap(36),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Shipping Method'.toUpperCase(),
+                    style: AppStyles.subTitle16(context),
+                  ),
+                ),
+                Gap(12),
+                CustomContainer(title: 'Pickup at store', icon: Assets.imgsDown, suffText: 'Free'),
+                Gap(36),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Payment method'.toUpperCase(), style: AppStyles.subTitle16(context)),
+                ),
+                Gap(12),
+                CustomContainer(title: 'select payment method', icon: Assets.imgsDown),
+                Spacer(),
+                TotalPriceSection(
+                  productModel: orderModel.productModel,
+                  count: orderModel.quantity,
+                ),
+                Gap(24),
+              ],
+            ),
+          ),
+        ),
+        CustomButton(text: 'Place order'),
+        Gap(20),
+      ],
     );
   }
 }
-

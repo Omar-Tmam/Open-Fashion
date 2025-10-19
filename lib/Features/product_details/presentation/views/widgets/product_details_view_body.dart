@@ -34,7 +34,11 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           Gap(20),
           DeliverySection(),
           Spacer(),
-          TotalPriceSection(productModel: widget.productModel, itemContNotifier: itemCountNotifier),
+          ValueListenableBuilder(
+            valueListenable: itemCountNotifier,
+            builder: (context, value, child) =>
+                TotalPriceSection(productModel: widget.productModel, count: value),
+          ),
           Gap(22),
           CustomButton(
             onTap: () {
