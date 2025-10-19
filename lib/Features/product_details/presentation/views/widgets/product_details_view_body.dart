@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:open_fashion/Core/assets.dart';
+import 'package:open_fashion/Core/utils/app_router.dart';
 import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
+import 'package:open_fashion/Features/product_details/data/models/order_model.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/cart_widget.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/delivery_section.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
@@ -33,12 +36,19 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
           Spacer(),
           TotalPriceSection(productModel: widget.productModel, itemContNotifier: itemCountNotifier),
           Gap(22),
-          InkWell(
-            onTap: () {},
-            child: CustomButton(
-              widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
-              text: 'checkout',
-            ),
+          CustomButton(
+            onTap: () {
+              context.push(
+                AppRouter.kShippingView,
+                extra: OrderModel(
+                  productModel: widget.productModel,
+                  quantity: itemCountNotifier.value,
+                  totalPrice: itemCountNotifier.value * widget.productModel.price,
+                ),
+              );
+            },
+            widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
+            text: 'checkout',
           ),
           Gap(20),
         ],
