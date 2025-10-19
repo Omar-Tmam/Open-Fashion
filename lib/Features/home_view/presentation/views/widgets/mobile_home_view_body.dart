@@ -20,12 +20,17 @@ class MobileHomeViewBody extends StatelessWidget {
           Positioned(top: 40, right: 0, left: 0, child: SvgPicture.asset(Assets.imgsOctober)),
           Positioned(top: 85, right: 0, left: 0, child: SvgPicture.asset(Assets.imgsCollection)),
           Positioned.fill(
-            top: 140,
+            top: 130,
 
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Image.asset(Assets.imgsMainImg),
+                  Stack(
+                    children: [
+                      Image.asset(Assets.imgsMainImg),
+                      Positioned(right: 0, bottom: 0, child: SvgPicture.asset(Assets.imgs10)),
+                    ],
+                  ),
                   Gap(20),
                   ProductBuilder(),
 

@@ -68,7 +68,7 @@ class CartWidget extends StatelessWidget {
               ),
               Gap(12),
               Text(
-                productModel.price.toString(),
+                '\$${productModel.price}',
                 style: AppStyles.subTitle16(context).copyWith(color: Colors.orange),
               ),
             ],

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/assets.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
 import 'package:open_fashion/Core/widgets/custom_button.dart';
+import 'package:open_fashion/Core/widgets/header_widget.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/cart_widget.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/delivery_section.dart';
@@ -25,21 +26,20 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
       child: Column(
         children: [
           Gap(34),
-          Text('Checkout'.toUpperCase(), style: AppStyles.title18(context).copyWith(fontSize: 24)),
-          SvgPicture.asset(
-            Assets.imgs12,
-            colorFilter: ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn),
-          ),
+          HeaderWidget(title: 'checkout'),
           Gap(20),
-          CartWidget(productModel: widget.productModel,itemContNotifer: itemCountNotifier,),
+          CartWidget(productModel: widget.productModel, itemContNotifer: itemCountNotifier),
           Gap(20),
           DeliverySection(),
           Spacer(),
           TotalPriceSection(productModel: widget.productModel, itemContNotifier: itemCountNotifier),
           Gap(22),
-          CustomButton(
-            widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
-            text: 'checkout',
+          InkWell(
+            onTap: () {},
+            child: CustomButton(
+              widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
+              text: 'checkout',
+            ),
           ),
           Gap(20),
         ],
@@ -47,3 +47,4 @@ class _ProductDetailsViewBodyState extends State<ProductDetailsViewBody> {
     );
   }
 }
+
