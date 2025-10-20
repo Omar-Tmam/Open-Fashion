@@ -27,6 +27,14 @@ class ShippingViewBody extends StatelessWidget {
                 Gap(34),
                 HeaderWidget(title: 'Shipping'),
                 Gap(20),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Shipping address'.toUpperCase(),
+                    style: AppStyles.subTitle16(context),
+                  ),
+                ),
+                Gap(12),
                 CustomContainer(
                   title: 'Add shipping address',
                   icon: Assets.imgsPlus,

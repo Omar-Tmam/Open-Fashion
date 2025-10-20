@@ -1,0 +1,24 @@
+import 'package:flutter/material.dart';
+import 'package:open_fashion/Core/utils/app_styles.dart';
+
+class CustomTextField extends StatelessWidget {
+  final String label;
+  final TextEditingController controller;
+
+  const CustomTextField({super.key, required this.label, required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      style: AppStyles.bodyLarge(context),
+      controller: controller,
+      validator: (v) => "Please Fill The Field",
+      decoration: InputDecoration(
+        hintText: label,
+        hintStyle: AppStyles.bodyLarge(context),
+        enabledBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+        focusedBorder: const UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+      ),
+    );
+  }
+}
