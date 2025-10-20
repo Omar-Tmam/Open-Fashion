@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:open_fashion/Features/address_view/presentation/views/address_view.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
 import 'package:open_fashion/Features/home_view/presentation/views/home_view.dart';
 import 'package:open_fashion/Features/product_details/data/models/order_model.dart';
@@ -11,6 +12,7 @@ abstract class AppRouter {
   static const kHomeView = '/homeView';
   static const kProductDetailsView = '/productDetailsView';
   static const kShippingView = '/shippingView';
+  static const kAddressView = '/addressView';
 
   static final router = GoRouter(
     routes: [
@@ -20,7 +22,11 @@ abstract class AppRouter {
         path: kProductDetailsView,
         builder: (context, state) => ProductDetails(productModel: state.extra as ProductModel),
       ),
-      GoRoute(path: kShippingView,builder: (context, state) => ShippingView(orderModel: state.extra as OrderModel,),)
+      GoRoute(
+        path: kShippingView,
+        builder: (context, state) => ShippingView(orderModel: state.extra as OrderModel),
+      ),
+      GoRoute(path: kAddressView,builder: (context, state) => AddressView(),)
     ],
   );
 }

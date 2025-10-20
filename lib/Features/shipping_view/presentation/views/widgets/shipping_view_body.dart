@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:open_fashion/Core/assets.dart';
+import 'package:open_fashion/Core/utils/app_router.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
 import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
@@ -24,7 +27,13 @@ class ShippingViewBody extends StatelessWidget {
                 Gap(34),
                 HeaderWidget(title: 'Shipping'),
                 Gap(20),
-                CustomContainer(title: 'Add shipping address', icon: Assets.imgsPlus),
+                CustomContainer(
+                  title: 'Add shipping address',
+                  icon: Assets.imgsPlus,
+                  onTap: () {
+                    context.push(AppRouter.kAddressView);
+                  },
+                ),
                 Gap(36),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -52,7 +61,11 @@ class ShippingViewBody extends StatelessWidget {
             ),
           ),
         ),
-        CustomButton(text: 'Place order'),
+        CustomButton(
+          onTap: () {},
+          widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
+          text: 'Place order',
+        ),
         Gap(20),
       ],
     );

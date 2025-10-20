@@ -11,7 +11,7 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(title.toUpperCase(), style: AppStyles.title18(context).copyWith(fontSize: 24)),
+        Text(title.toUpperCase(), style: AppStyles.title18(context).copyWith(fontSize: 22)),
         SvgPicture.asset(
           Assets.imgs12,
           colorFilter: ColorFilter.mode(Theme.of(context).iconTheme.color!, BlendMode.srcIn),

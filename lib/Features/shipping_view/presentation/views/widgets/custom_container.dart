@@ -4,10 +4,11 @@ import 'package:gap/gap.dart';
 import 'package:open_fashion/Core/utils/app_styles.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer({super.key, required this.title, required this.icon, this.suffText});
+  const CustomContainer({super.key, required this.title, required this.icon, this.suffText, this.onTap});
   final String title;
   final String icon;
   final String? suffText;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,10 @@ class CustomContainer extends StatelessWidget {
             ).copyWith(color: Color(0xFF555555), fontWeight: FontWeight.w700),
           ),
           Gap(5),
-          SvgPicture.asset(icon, color: Colors.black, width: 22),
+          InkWell(
+            onTap: onTap,
+            child: SvgPicture.asset(icon, color: Colors.black, width: 22),
+          ),
           Gap(20),
         ],
       ),
