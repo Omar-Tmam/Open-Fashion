@@ -35,13 +35,16 @@ class ShippingViewBody extends StatelessWidget {
                   ),
                 ),
                 Gap(12),
-                CustomContainer(
-                  title: 'Add shipping address',
-                  icon: Assets.imgsPlus,
-                  onTap: () {
-                    context.push(AppRouter.kAddressView);
-                  },
-                ),
+
+                orderModel.addressModel != null
+                    ? AddressInfoWidget(orderModel: orderModel)
+                    : CustomContainer(
+                        title: 'Add shipping address',
+                        icon: Assets.imgsPlus,
+                        onTap: () {
+                          context.push(AppRouter.kAddressView, extra: orderModel);
+                        },
+                      ),
                 Gap(36),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -75,6 +78,46 @@ class ShippingViewBody extends StatelessWidget {
           text: 'Place order',
         ),
         Gap(20),
+      ],
+    );
+  }
+}
+
+class AddressInfoWidget extends StatelessWidget {
+  const AddressInfoWidget({super.key, required this.orderModel});
+  final OrderModel orderModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${orderModel.addressModel!.firstName} ${orderModel.addressModel!.lastName}",
+                style: AppStyles.bodyLarge(context),
+              ),
+              Gap(6),
+              Text(orderModel.addressModel!.address, style: AppStyles.bodyMedium(context)),
+              Gap(6),
+              Text(
+                '${orderModel.addressModel!.city} ${orderModel.addressModel!.state} ${orderModel.addressModel!.zipCode}',
+                style: AppStyles.bodyMedium(context),
+              ),
+              Gap(6),
+              Text(orderModel.addressModel!.phone, style: AppStyles.bodyMedium(context)),
+            ],
+          ),
+        ),
+        Spacer(),
+        InkWell(
+          onTap: () => context.push(AppRouter.kAddressView, extra: orderModel),
+          child: SvgPicture.asset(Assets.imgsForward, color: Colors.white),
+        ),
+        Gap(16),
       ],
     );
   }

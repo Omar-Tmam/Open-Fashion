@@ -26,7 +26,7 @@ abstract class AppRouter {
         path: kShippingView,
         builder: (context, state) => ShippingView(orderModel: state.extra as OrderModel),
       ),
-      GoRoute(path: kAddressView,builder: (context, state) => AddressView(),)
+      GoRoute(path: kAddressView,builder: (context, state) => AddressView(orderModel: state.extra as OrderModel,),)
     ],
   );
 }

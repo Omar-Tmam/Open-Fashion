@@ -1,11 +1,11 @@
 class AddressModel {
-  final String firstName;
-  final String lastName;
-  final String address;
-  final String city;
-  final String state;
-  final String zipCode;
-  final String phone;
+   String firstName;
+   String lastName;
+   String address;
+   String city;
+   String state;
+   String zipCode;
+   String phone;
 
   AddressModel({
     required this.firstName,

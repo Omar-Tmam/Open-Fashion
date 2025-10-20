@@ -1,12 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
-import 'package:open_fashion/Features/address_view/presentation/views/widgets/custom_text_field.dart';
+import 'package:open_fashion/Features/address_view/data/models/address_model.dart';
+import 'package:open_fashion/Features/address_view/presentation/views/widgets/text_fields_section.dart';
+import 'package:open_fashion/Features/product_details/data/models/order_model.dart';
 
-class AddressViewBody extends StatelessWidget {
-   AddressViewBody({super.key});
+class AddressViewBody extends StatefulWidget {
+  const AddressViewBody({super.key, required this.orderModel});
+  final OrderModel orderModel;
+  @override
+  State<AddressViewBody> createState() => _AddressViewBodyState();
+}
+
+class _AddressViewBodyState extends State<AddressViewBody> {
   final _formKey = GlobalKey<FormState>();
+
+  late TextEditingController firstNameController;
+  late TextEditingController lastNameController;
+  late TextEditingController addressController;
+  late TextEditingController cityController;
+  late TextEditingController stateController;
+  late TextEditingController zipCodeController;
+  late TextEditingController phoneController;
+
+  @override
+  void initState() {
+    firstNameController = TextEditingController(
+      text: widget.orderModel.addressModel?.firstName ?? '',
+    );
+    lastNameController = TextEditingController(
+      text: widget.orderModel.addressModel?.lastName ?? '',
+    );
+    addressController = TextEditingController(text: widget.orderModel.addressModel?.address ?? '');
+    cityController = TextEditingController(text: widget.orderModel.addressModel?.city ?? '');
+    stateController = TextEditingController(text: widget.orderModel.addressModel?.state ?? '');
+    zipCodeController = TextEditingController(text: widget.orderModel.addressModel?.zipCode ?? '');
+    phoneController = TextEditingController(text: widget.orderModel.addressModel?.phone ?? '');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    firstNameController.dispose();
+    lastNameController.dispose();
+    addressController.dispose();
+    cityController.dispose();
+    stateController.dispose();
+    zipCodeController.dispose();
+    phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,80 +60,48 @@ class AddressViewBody extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Gap(34),
-                const HeaderWidget(title: 'add shipping address'),
-                const Gap(26),
-
-                Form(
-                  key: _formKey,
-                  child: TextFieldsSection()),
-
-                const Spacer(),
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Gap(34),
+                  const HeaderWidget(title: 'add shipping address'),
+                  const Gap(26),
+                  TextFieldsSection(
+                    cityController: cityController,
+                    firstNameController: firstNameController,
+                    lastNameController: lastNameController,
+                    phoneController: phoneController,
+                    stateController: stateController,
+                    zipCodeController: zipCodeController,
+                    addressController: addressController,
+                  ),
+                  const Spacer(),
+                ],
+              ),
             ),
           ),
         ),
+        CustomButton(
+          onTap: () {
+            if (_formKey.currentState!.validate()) {
+              widget.orderModel.addressModel = AddressModel(
+                address: addressController.text,
+                city: cityController.text,
+                firstName: firstNameController.text,
+                lastName: lastNameController.text,
+                phone: phoneController.text,
+                state: stateController.text,
+                zipCode: zipCodeController.text,
+              );
+              context.pop();
+            }
+          },
 
-        CustomButton(text: 'Add now'),
-        const Gap(20),
-      ],
-    );
-  }
-}
-
-class TextFieldsSection extends StatefulWidget {
-  const TextFieldsSection({super.key});
-
-  @override
-  State<TextFieldsSection> createState() => _TextFieldsSectionState();
-}
-
-class _TextFieldsSectionState extends State<TextFieldsSection> {
-  final firstNameController = TextEditingController();
-  final lastNameController = TextEditingController();
-  final addressController = TextEditingController();
-  final cityController = TextEditingController();
-  final stateController = TextEditingController();
-  final zipCodeController = TextEditingController();
-  final phoneController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: CustomTextField(label: 'First name', controller: firstNameController),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: CustomTextField(label: 'Last name', controller: lastNameController),
-            ),
-          ],
+          text: widget.orderModel.addressModel == null ? 'Add now' : 'update',
         ),
         const Gap(20),
-        CustomTextField(label: 'Address', controller: addressController),
-        const Gap(20),
-        CustomTextField(label: 'City', controller: cityController),
-        const Gap(20),
-
-        Row(
-          children: [
-            Expanded(
-              child: CustomTextField(label: 'State', controller: stateController),
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: CustomTextField(label: 'ZIP code', controller: zipCodeController),
-            ),
-          ],
-        ),
-        const Gap(20),
-        CustomTextField(label: 'Phone number', controller: phoneController),
       ],
     );
   }
