@@ -50,6 +50,10 @@ class Assets {
   /// assets/imgs/Collection.svg
   static const String imgsCollection = "assets/imgs/Collection.svg";
 
+  /// Assets for imgsDisappointed
+  /// assets/imgs/Disappointed.svg
+  static const String imgsDisappointed = "assets/imgs/Disappointed.svg";
+
   /// Assets for imgsDoNotBleach
   /// assets/imgs/DoNotBleach.svg
   static const String imgsDoNotBleach = "assets/imgs/DoNotBleach.svg";
@@ -61,6 +65,10 @@ class Assets {
   /// Assets for imgsDoNotWash
   /// assets/imgs/DoNotWash.svg
   static const String imgsDoNotWash = "assets/imgs/DoNotWash.svg";
+
+  /// Assets for imgsDone
+  /// assets/imgs/done.svg
+  static const String imgsDone = "assets/imgs/done.svg";
 
   /// Assets for imgsDoortoDoorDelivery
   /// assets/imgs/DoortoDoorDelivery.svg
@@ -110,9 +118,17 @@ class Assets {
   /// assets/imgs/Group198.svg
   static const String imgsGroup198 = "assets/imgs/Group198.svg";
 
+  /// Assets for imgsHappy
+  /// assets/imgs/happy.svg
+  static const String imgsHappy = "assets/imgs/happy.svg";
+
   /// Assets for imgsHeart
   /// assets/imgs/Heart.svg
   static const String imgsHeart = "assets/imgs/Heart.svg";
+
+  /// Assets for imgsInLove
+  /// assets/imgs/in_love.svg
+  static const String imgsInLove = "assets/imgs/in_love.svg";
 
   /// Assets for imgsInstagram
   /// assets/imgs/Instagram.svg

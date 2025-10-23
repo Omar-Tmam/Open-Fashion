@@ -80,7 +80,20 @@ class ShippingViewBody extends StatelessWidget {
           ),
         ),
         CustomButton(
-          onTap: () {},
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return Dialog(
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: 500,
+                    child: Column(mainAxisSize: MainAxisSize.max, children: []),
+                  ),
+                );
+              },
+            );
+          },
           widget: SvgPicture.asset(Assets.imgsShoppingbag, width: 26),
           text: 'Place order',
         ),
