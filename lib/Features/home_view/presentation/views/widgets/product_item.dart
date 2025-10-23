@@ -13,46 +13,49 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Stack(
-          children: [
-            GestureDetector(
-              onTap: () {
-                context.push(AppRouter.kProductDetailsView, extra: productModel);
-              },
-              child: Image.asset(productModel.image),
-            ),
-            Positioned(
-              right: 10,
-              bottom: 10,
-              child: SvgPicture.asset(Assets.imgsHeart, color: Colors.orange),
-            ),
-          ],
-        ),
-        Gap(10),
-        Text(
-          productModel.name,
-          style: AppStyles.bodyLarge(context),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-        Gap(10),
-        Text(
-          productModel.description,
-          style: AppStyles.bodyMedium(context),
-          maxLines: 3,
-          overflow: TextOverflow.ellipsis,
-        ),
-        Gap(10),
-        Text(
-          '\$${productModel.price}',
-          style: AppStyles.bodyLarge(context).copyWith(color: Colors.orange),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
+    return Container(
+      color: Color(0xFF111111),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  context.push(AppRouter.kProductDetailsView, extra: productModel);
+                },
+                child: Image.asset(productModel.image),
+              ),
+              Positioned(
+                right: 10,
+                bottom: 10,
+                child: SvgPicture.asset(Assets.imgsHeart, color: Colors.orange),
+              ),
+            ],
+          ),
+          Gap(10),
+          Text(
+            productModel.name,
+            style: AppStyles.bodyLarge(context),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Gap(10),
+          Text(
+            productModel.description,
+            style: AppStyles.bodyMedium(context),
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Gap(10),
+          Text(
+            '\$${productModel.price}',
+            style: AppStyles.bodyLarge(context).copyWith(color: Colors.orange),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 }

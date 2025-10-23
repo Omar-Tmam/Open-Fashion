@@ -19,41 +19,38 @@ class MobileHomeViewBody extends StatelessWidget {
           Positioned(top: 10, right: 0, left: 0, child: SvgPicture.asset(Assets.imgs10)),
           Positioned(top: 40, right: 0, left: 0, child: SvgPicture.asset(Assets.imgsOctober)),
           Positioned(top: 85, right: 0, left: 0, child: SvgPicture.asset(Assets.imgsCollection)),
-          Positioned.fill(
-            top: 130,
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                Gap(120),
+                Stack(
+                  children: [
+                    Image.asset(Assets.imgsMainImg),
+                    Positioned(right: 0, bottom: 0, child: SvgPicture.asset(Assets.imgs10)),
+                  ],
+                ),
+                Gap(20),
+                ProductBuilder(),
 
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      Image.asset(Assets.imgsMainImg),
-                      Positioned(right: 0, bottom: 0, child: SvgPicture.asset(Assets.imgs10)),
-                    ],
+                Gap(50),
+                Text(
+                  'You may also like'.toUpperCase(),
+                  style: AppStyles.bodyLarge(context).copyWith(fontSize: 26),
+                ),
+                Gap(20),
+                SvgPicture.asset(
+                  Assets.imgs12,
+                  width: 200,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).iconTheme.color!,
+                    BlendMode.srcIn,
                   ),
-                  Gap(20),
-                  ProductBuilder(),
-
-                  Gap(50),
-                  Text(
-                    'You may also like'.toUpperCase(),
-                    style: AppStyles.bodyLarge(context).copyWith(fontSize: 26),
-                  ),
-                  Gap(20),
-                  SvgPicture.asset(
-                    Assets.imgs12,
-                    width: 200,
-                    colorFilter: ColorFilter.mode(
-                      Theme.of(context).iconTheme.color!,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  Gap(50),
-                  CoverBuilder(),
-                  Gap(70),
-                  ContactSection(),
-                ],
-              ),
+                ),
+                Gap(50),
+                CoverBuilder(),
+                Gap(70),
+                ContactSection(),
+              ],
             ),
           ),
         ],

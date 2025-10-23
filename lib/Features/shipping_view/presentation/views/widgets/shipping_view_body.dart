@@ -51,19 +51,62 @@ class _ShippingViewBodyState extends State<ShippingViewBody> {
                   Gap(12),
                   AddressBuilder(orderNotifier: orderNotifier, widget: widget),
                   Gap(36),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Shipping Method'.toUpperCase(),
-                      style: AppStyles.subTitle16(context),
-                    ),
-                  ),
-                  Gap(12),
-                  CustomContainer(
-                    title: 'Pickup at store',
-                    icon: Assets.imgsDown,
-                    suffText: 'Free',
-                  ),
+                  widget.orderModel.addressModel == null || orderNotifier.value.paymentModel == null
+                      ? Column(
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                'Shipping Method'.toUpperCase(),
+                                style: AppStyles.subTitle16(context),
+                              ),
+                            ),
+                            Gap(12),
+                            CustomContainer(
+                              title: 'Pickup at store',
+                              icon: Assets.imgsDown,
+                              suffText: 'Free',
+                            ),
+                          ],
+                        )
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              orderNotifier.value.productModel.image,
+                              width: 200,
+                              height: 220,
+                            ),
+                            Gap(8),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    orderNotifier.value.productModel.name.toUpperCase(),
+                                    style: AppStyles.subTitle16(context),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 2,
+                                  ),
+                                  Gap(10),
+                                  Text(
+                                    orderNotifier.value.productModel.description,
+                                    style: AppStyles.bodyLarge(context),
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 3,
+                                  ),
+                                  Gap(12),
+
+                                  Gap(12),
+                                  Text(
+                                    'Quantity : ${orderNotifier.value.quantity}',
+                                    style: AppStyles.subTitle16(context),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                   Gap(36),
                   Align(
                     alignment: Alignment.centerLeft,
