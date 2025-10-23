@@ -154,6 +154,10 @@ class Assets {
   /// assets/imgs/main_img.png
   static const String imgsMainImg = "assets/imgs/main_img.png";
 
+  /// Assets for imgsMasterCard
+  /// assets/imgs/MasterCard.svg
+  static const String imgsMasterCard = "assets/imgs/MasterCard.svg";
+
   /// Assets for imgsMenu
   /// assets/imgs/Menu.svg
   static const String imgsMenu = "assets/imgs/Menu.svg";

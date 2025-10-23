@@ -16,12 +16,22 @@ class MobilePaymentViewBody extends StatefulWidget {
 }
 
 class _MobilePaymentViewBodyState extends State<MobilePaymentViewBody> {
-  String cardNumber = '';
-  String expiryDate = '';
-  String cardHolderName = '';
-  String cvvCode = '';
+  late String cardNumber;
+  late String expiryDate;
+  late String cardHolderName;
+  late String cvvCode;
   bool showBackView = false;
   final _key = GlobalKey<FormState>();
+  late PaymentModel? paymentModel;
+  @override
+  void initState() {
+    paymentModel = widget.orderNotifier.value.paymentModel;
+    cardHolderName = paymentModel?.cardHolder ?? '';
+    cardNumber = paymentModel?.cardNumber ?? '';
+    expiryDate = paymentModel?.expiryDate ?? '';
+    cvvCode = paymentModel?.cvv ?? '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +62,7 @@ class _MobilePaymentViewBodyState extends State<MobilePaymentViewBody> {
                     CreditCardForm(
                       isCardHolderNameUpperCase: true,
                       obscureCvv: true,
-                      obscureNumber: true,
+
                       cardNumber: cardNumber,
                       expiryDate: expiryDate,
                       cardHolderName: cardHolderName,
@@ -79,7 +89,7 @@ class _MobilePaymentViewBodyState extends State<MobilePaymentViewBody> {
 
               context.pop();
             },
-            text: 'add card',
+            text: paymentModel == null ? 'add card' : 'edit card',
           ),
           const Gap(20),
         ],
