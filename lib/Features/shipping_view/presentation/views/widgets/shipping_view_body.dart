@@ -9,6 +9,7 @@ import 'package:open_fashion/Core/widgets/custom_button.dart';
 import 'package:open_fashion/Core/widgets/header_widget.dart';
 import 'package:open_fashion/Features/product_details/data/models/order_model.dart';
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
+import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/address_info_widget.dart';
 import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/custom_container.dart';
 
 class ShippingViewBody extends StatelessWidget {
@@ -61,7 +62,13 @@ class ShippingViewBody extends StatelessWidget {
                   child: Text('Payment method'.toUpperCase(), style: AppStyles.subTitle16(context)),
                 ),
                 Gap(12),
-                CustomContainer(title: 'select payment method', icon: Assets.imgsDown),
+                CustomContainer(
+                  onTap: () {
+                    context.push(AppRouter.kPaymentView);
+                  },
+                  title: 'select payment method',
+                  icon: Assets.imgsDown,
+                ),
                 Spacer(),
                 TotalPriceSection(
                   productModel: orderModel.productModel,
@@ -78,46 +85,6 @@ class ShippingViewBody extends StatelessWidget {
           text: 'Place order',
         ),
         Gap(20),
-      ],
-    );
-  }
-}
-
-class AddressInfoWidget extends StatelessWidget {
-  const AddressInfoWidget({super.key, required this.orderModel});
-  final OrderModel orderModel;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "${orderModel.addressModel!.firstName} ${orderModel.addressModel!.lastName}",
-                style: AppStyles.bodyLarge(context),
-              ),
-              Gap(6),
-              Text(orderModel.addressModel!.address, style: AppStyles.bodyMedium(context)),
-              Gap(6),
-              Text(
-                '${orderModel.addressModel!.city} ${orderModel.addressModel!.state} ${orderModel.addressModel!.zipCode}',
-                style: AppStyles.bodyMedium(context),
-              ),
-              Gap(6),
-              Text(orderModel.addressModel!.phone, style: AppStyles.bodyMedium(context)),
-            ],
-          ),
-        ),
-        Spacer(),
-        InkWell(
-          onTap: () => context.push(AppRouter.kAddressView, extra: orderModel),
-          child: SvgPicture.asset(Assets.imgsForward, color: Colors.white),
-        ),
-        Gap(16),
       ],
     );
   }

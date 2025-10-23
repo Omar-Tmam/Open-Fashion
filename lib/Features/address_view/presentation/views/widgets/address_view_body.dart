@@ -57,32 +57,36 @@ class _AddressViewBodyState extends State<AddressViewBody> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         Expanded(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Form(
               key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Gap(34),
-                  const HeaderWidget(title: 'add shipping address'),
-                  const Gap(26),
-                  TextFieldsSection(
-                    cityController: cityController,
-                    firstNameController: firstNameController,
-                    lastNameController: lastNameController,
-                    phoneController: phoneController,
-                    stateController: stateController,
-                    zipCodeController: zipCodeController,
-                    addressController: addressController,
-                  ),
-                  const Spacer(),
-                ],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Gap(34),
+                    const HeaderWidget(title: 'add shipping address'),
+                    const Gap(26),
+                    TextFieldsSection(
+                      cityController: cityController,
+                      firstNameController: firstNameController,
+                      lastNameController: lastNameController,
+                      phoneController: phoneController,
+                      stateController: stateController,
+                      zipCodeController: zipCodeController,
+                      addressController: addressController,
+                    ),
+                    const Gap(20),
+                  ],
+                ),
               ),
             ),
           ),
         ),
+
         CustomButton(
           onTap: () {
             if (_formKey.currentState!.validate()) {
@@ -98,7 +102,6 @@ class _AddressViewBodyState extends State<AddressViewBody> {
               context.pop();
             }
           },
-
           text: widget.orderModel.addressModel == null ? 'Add now' : 'update',
         ),
         const Gap(20),
