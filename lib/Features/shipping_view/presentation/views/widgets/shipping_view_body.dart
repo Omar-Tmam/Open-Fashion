@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -88,7 +89,22 @@ class ShippingViewBody extends StatelessWidget {
                   child: SizedBox(
                     width: double.infinity,
                     height: 500,
-                    child: Column(mainAxisSize: MainAxisSize.max, children: []),
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Align(
+                            alignment: AlignmentGeometry.centerRight,
+                            child: Icon(CupertinoIcons.clear),
+                          ),
+                          Gap(18),
+                          Text('Payment success'.toUpperCase(), style: AppStyles.title18(context)),
+                          Gap(40),
+                          SvgPicture.asset(Assets.imgsDone),
+                        ],
+                      ),
+                    ),
                   ),
                 );
               },
