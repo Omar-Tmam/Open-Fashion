@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:open_fashion/Features/address_view/presentation/views/address_view.dart';
 import 'package:open_fashion/Features/home_view/data/models/product_model.dart';
@@ -32,7 +33,7 @@ abstract class AppRouter {
         path: kAddressView,
         builder: (context, state) => AddressView(orderModel: state.extra as OrderModel),
       ),
-      GoRoute(path: kPaymentView,builder: (context, state) => PaymentView(),)
+      GoRoute(path: kPaymentView,builder: (context, state) => PaymentView(orderNotifier: state.extra as ValueNotifier<OrderModel>,),)
     ],
   );
 }

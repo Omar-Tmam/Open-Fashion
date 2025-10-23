@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,10 +14,23 @@ import 'package:open_fashion/Features/product_details/data/models/order_model.da
 import 'package:open_fashion/Features/product_details/presentation/views/widgets/total_price_section.dart';
 import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/address_info_widget.dart';
 import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/custom_container.dart';
+import 'package:open_fashion/Features/shipping_view/presentation/views/widgets/dialog_body.dart';
 
-class ShippingViewBody extends StatelessWidget {
+class ShippingViewBody extends StatefulWidget {
   const ShippingViewBody({super.key, required this.orderModel});
   final OrderModel orderModel;
+
+  @override
+  State<ShippingViewBody> createState() => _ShippingViewBodyState();
+}
+
+class _ShippingViewBodyState extends State<ShippingViewBody> {
+  late ValueNotifier<OrderModel> orderNotifier;
+  @override
+  void initState() {
+    super.initState();
+    orderNotifier = ValueNotifier(widget.orderModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +53,13 @@ class ShippingViewBody extends StatelessWidget {
                 ),
                 Gap(12),
 
-                orderModel.addressModel != null
-                    ? AddressInfoWidget(orderModel: orderModel)
+                widget.orderModel.addressModel != null
+                    ? AddressInfoWidget(orderModel: widget.orderModel)
                     : CustomContainer(
                         title: 'Add shipping address',
                         icon: Assets.imgsPlus,
                         onTap: () {
-                          context.push(AppRouter.kAddressView, extra: orderModel);
+                          context.push(AppRouter.kAddressView, extra: widget.orderModel);
                         },
                       ),
                 Gap(36),
@@ -63,17 +78,20 @@ class ShippingViewBody extends StatelessWidget {
                   child: Text('Payment method'.toUpperCase(), style: AppStyles.subTitle16(context)),
                 ),
                 Gap(12),
-                CustomContainer(
-                  onTap: () {
-                    context.push(AppRouter.kPaymentView);
-                  },
-                  title: 'select payment method',
-                  icon: Assets.imgsDown,
-                ),
+
+                orderNotifier.value.paymentModel == null
+                    ? CustomContainer(
+                        onTap: () {
+                          context.push(AppRouter.kPaymentView, extra: orderNotifier);
+                        },
+                        title: 'select payment method',
+                        icon: Assets.imgsDown,
+                      )
+                    : Text(orderNotifier.value.paymentModel!.cardHolder),
                 Spacer(),
                 TotalPriceSection(
-                  productModel: orderModel.productModel,
-                  count: orderModel.quantity,
+                  productModel: widget.orderModel.productModel,
+                  count: widget.orderModel.quantity,
                 ),
                 Gap(24),
               ],
@@ -86,25 +104,11 @@ class ShippingViewBody extends StatelessWidget {
               context: context,
               builder: (context) {
                 return Dialog(
+                  shape: Border.symmetric(),
                   child: SizedBox(
                     width: double.infinity,
                     height: 500,
-                    child: Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Align(
-                            alignment: AlignmentGeometry.centerRight,
-                            child: Icon(CupertinoIcons.clear),
-                          ),
-                          Gap(18),
-                          Text('Payment success'.toUpperCase(), style: AppStyles.title18(context)),
-                          Gap(40),
-                          SvgPicture.asset(Assets.imgsDone),
-                        ],
-                      ),
-                    ),
+                    child: DialogBody(),
                   ),
                 );
               },
@@ -118,3 +122,5 @@ class ShippingViewBody extends StatelessWidget {
     );
   }
 }
+
+
