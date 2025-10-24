@@ -37,10 +37,13 @@ class AddressInfoWidget extends StatelessWidget {
           ),
         ),
         Spacer(),
-        InkWell(
-          onTap: () => context.push(AppRouter.kAddressView, extra: orderModel),
-          child: SvgPicture.asset(Assets.imgsForward, color: Colors.white),
+        IconButton(
+          onPressed: () {
+            context.push(AppRouter.kAddressView, extra: orderModel);
+          },
+          icon: SvgPicture.asset(Assets.imgsForward, color: Colors.white),
         ),
+
         Gap(16),
       ],
     );

@@ -37,11 +37,12 @@ class CartWidget extends StatelessWidget {
               Gap(12),
               Row(
                 children: [
-                  InkWell(
-                    onTap: () {
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
                       itemContNotifer.value > 1 ? itemContNotifer.value-- : null;
                     },
-                    child: Container(
+                    icon: Container(
                       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                       child: SvgPicture.asset(Assets.imgsNeg, width: 24, height: 26),
                     ),
@@ -57,9 +58,10 @@ class CartWidget extends StatelessWidget {
                     },
                   ),
                   Gap(18),
-                  InkWell(
-                    onTap: () => itemContNotifer.value++,
-                    child: Container(
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => itemContNotifer.value++,
+                    icon: Container(
                       decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                       child: SvgPicture.asset(Assets.imgsPlus, width: 24, height: 26),
                     ),

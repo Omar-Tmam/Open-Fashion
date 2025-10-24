@@ -21,7 +21,12 @@ class DialogBody extends StatelessWidget {
         children: [
           Align(
             alignment: AlignmentGeometry.centerRight,
-            child: InkWell(onTap: () => context.pop(), child: Icon(CupertinoIcons.clear)),
+            child: IconButton(
+              onPressed: () {
+                context.pop();
+              },
+              icon: Icon(CupertinoIcons.clear),
+            ),
           ),
           Gap(18),
           Text('Payment success'.toUpperCase(), style: AppStyles.title18(context)),
